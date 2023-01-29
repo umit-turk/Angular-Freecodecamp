@@ -1,4 +1,4 @@
-
+<h2>{{title}}</h2> 
 <table class="table">
   <tr>
     <th>Index</th>
@@ -15,7 +15,7 @@
     <td>{{i | percent}}</td>
     <td>{{e ? "Even": "Odd"}}</td>
     <td>{{room.roomNumber}}</td>
-    <td>{{room.roomType | slice : 0:4}}</td>
+    <td>{{room.roomType}}</td>
     <td>{{room.price | currency : 'tl'}}</td>
     <td>{{room.amenities | titlecase}}</td>
     <td>{{room.checkinTime | date : 'short'}}</td>
@@ -23,3 +23,5 @@
     <td><button class="btn btn-primary" (click)="selectRoom(room)">Select</button></td>
   </tr>
 </table>
+
+

@@ -1,5 +1,8 @@
 <!-- <p>wolcome to {{ hotelName }}</p> -->
 <app-header></app-header>
+<h1>
+  {{totalBytes}}
+</h1>
 <div [hidden]="hideRooms">
   Number of Rooms:
   <div
@@ -24,3 +27,4 @@
 </div>
 
 <button (click)="toggle()">Toggle</button>
+

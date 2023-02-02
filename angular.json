@@ -75,7 +75,8 @@
               "browserTarget": "freecodecamp:build:production"
             },
             "development": {
-              "browserTarget": "freecodecamp:build:development"
+              "browserTarget": "freecodecamp:build:development",
+              "proxyConfig": "src/proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

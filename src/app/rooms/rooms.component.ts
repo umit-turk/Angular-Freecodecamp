@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, QueryList, ViewChild, ViewChildren 
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { Observable } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-rooms',
@@ -12,7 +14,7 @@ import { RoomsService } from './services/rooms.service';
 export class RoomsComponent {
   hotelName: string = 'Hilton Hotel';
   numberOfRooms: number = 10;
-  hideRooms: boolean = false;
+  hideRooms: boolean = true;
   selectedRoom!:RoomList
   rooms: Room = {
     availableRooms: 10,
@@ -27,14 +29,53 @@ export class RoomsComponent {
 
   constructor(private roomsService:RoomsService) {}
 
+  stream = new Observable(observer => {
+    observer.next("user1");
+    observer.next("user2");
+    observer.next("user3");
+    observer.next("user4");
+    observer.complete();
+    observer.error("error")
+  })
+
+  totalBytes = 0;
+
   ngOnInit(): void {
+    this.roomsService.getPhotos().subscribe((data) => {
+      switch(data.type){
+        case HttpEventType.Sent: {
+          console.log('Request has been made!');
+          break;
+        }
+        case HttpEventType.ResponseHeader: {
+          console.log('Request success!');
+          break;
+        }
+        case HttpEventType.DownloadProgress: {
+          this.totalBytes += data.loaded;
+          break;
+        }
+        case HttpEventType.Response: {
+          console.log(data.body);
+        }
+      }
+      
+    })
    this.roomList = this.roomsService.getRooms()
+   this.stream.subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log("complete"),
+    error: (err) => console.log(err)
+   })
+   this.stream.subscribe((res) => {
+    console.log(res)
+   })
   }
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.headerComponent.title = "Rooms View";
-  this.headerChildrenComponent.last.title = "Last Title";
+    this.headerChildrenComponent.last.title = "Last Title";
   }
 
   ngAfterViewChecked(): void {

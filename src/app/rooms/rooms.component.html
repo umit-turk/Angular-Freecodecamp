@@ -3,6 +3,9 @@
 <h1>
   {{totalBytes}}
 </h1>
+<h1>
+  {{getError$ | async}} hatayı yaz
+</h1>
 <div [hidden]="hideRooms">
   Number of Rooms:
   <div

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, QueryList, ViewChild, ViewChildren 
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, map, of, shareReplay } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 
 @Component({
@@ -23,6 +23,8 @@ export class RoomsComponent {
   };
   title="Room List"
 
+  subscription?: Subscription
+
   roomList: RoomList[] = []
   @ViewChild(HeaderComponent) headerComponent!:HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!:QueryList<HeaderComponent>;
@@ -39,9 +41,18 @@ export class RoomsComponent {
   })
 
   totalBytes = 0;
+  error$ = new Subject<any>();
+
+  getError$ = this.error$?.asObservable();
+
+  users$ = this.roomsService.getUsers().pipe(catchError((err) => {
+    // console.log(err)
+    this.error$?.next(err.message);
+    return of({error:"fail"})
+   }))
 
   ngOnInit(): void {
-    this.roomsService.getPhotos().subscribe((data) => {
+    this.roomsService.getPhotos().pipe(shareReplay(1)).subscribe((data) => {
       switch(data.type){
         case HttpEventType.Sent: {
           console.log('Request has been made!');
@@ -67,9 +78,15 @@ export class RoomsComponent {
     complete: () => console.log("complete"),
     error: (err) => console.log(err)
    })
-   this.stream.subscribe((res) => {
-    console.log(res)
+   this.subscription = this.stream.subscribe((res) => {
+    // console.log(res)
    })
+
+   this.users$.subscribe((res) => {
+    // console.log(res);
+    
+   })
+    
   }
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -109,5 +126,12 @@ export class RoomsComponent {
     this.roomList = [...this.roomList, room]
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
+  }
 
 }

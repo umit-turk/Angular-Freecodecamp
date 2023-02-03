@@ -9,6 +9,7 @@ import {
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './logger.service';
 import { LocalStorageToken } from './localstorage.token';
+import { InitService } from './init.service';
 
 @Component({
   selector: 'app-root',
@@ -24,8 +25,12 @@ export class AppComponent {
 
   constructor(
     @Optional() private loggerService: LoggerService,
-    @Inject(LocalStorageToken) private localStorage: any
-  ) {}
+    @Inject(LocalStorageToken) private localStorage: any,
+    private initService:InitService
+  ) {
+    console.log(initService.config,"init");
+    
+  }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

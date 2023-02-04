@@ -114,7 +114,7 @@ export class RoomsComponent {
  
   addRoom(){
     const room:RoomList = {
-      roomNumber:4,
+      // roomNumber:4,
       roomType:"Normal Room",
       amenities:"lorem ipsum",
       price:300,

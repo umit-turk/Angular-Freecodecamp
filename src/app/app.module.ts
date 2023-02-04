@@ -1,7 +1,7 @@
 import { InitService } from './init.service';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,8 +22,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
-function initFactory(initService:InitService){
-  return () => initService.init()
+import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
+import { FormsModule } from '@angular/forms';
+function initFactory(initService: InitService) {
+  return () => initService.init();
 }
 
 @NgModule({
@@ -37,25 +39,37 @@ function initFactory(initService:InitService){
     AppNavComponent,
     NotFoundComponent,
     RoomsBookingComponent,
+    RoomsAddComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,BrowserAnimationsModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    FormsModule,
+  ],
   providers: [
     {
-      provide:APP_SERVICE_CONFIG,
-      useValue:APP_CONFIG
+      provide: APP_SERVICE_CONFIG,
+      useValue: APP_CONFIG,
     },
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:RequestInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
     },
     {
-      provide:APP_INITIALIZER,
-      useFactory:initFactory,
-      deps:[InitService],
-      multi:true
-
-    }
+      provide: APP_INITIALIZER,
+      useFactory: initFactory,
+      deps: [InitService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

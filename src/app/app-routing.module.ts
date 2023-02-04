@@ -5,6 +5,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from './container/container.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
+import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 
 const routes: Routes = [
   {
@@ -16,8 +17,12 @@ const routes: Routes = [
     component: RoomsComponent,
   },
   {
-    path:'rooms/:roomid',
-    component:RoomsBookingComponent,
+    path:"rooms/add",
+    component:RoomsAddComponent
+  },
+  {
+    path: 'rooms/:roomid',
+    component: RoomsBookingComponent,
   },
   {
     path: '',

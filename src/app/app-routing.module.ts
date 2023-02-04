@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from './container/container.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 
 const routes: Routes = [
   {
@@ -14,7 +16,17 @@ const routes: Routes = [
     component: RoomsComponent,
   },
   {
-    path:'', redirectTo: '/rooms', pathMatch:'full'
+    path:'rooms/:roomid',
+    component:RoomsBookingComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/rooms',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

@@ -23,7 +23,7 @@ export class RoomsAddComponent {
   constructor(private rooomsService:RoomsService){}
 
   AddRoom(form:NgForm){
-    console.log(form);
+    // console.log(form);
     
     this.rooomsService.roomList.push(this.room)
     this.successMessage = "Room Added";

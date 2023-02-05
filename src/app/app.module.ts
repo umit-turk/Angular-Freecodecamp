@@ -24,6 +24,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { FormsModule } from '@angular/forms';
+import { CustomPipe } from 'src/pipes/custom.pipe';
+import { LoginComponent } from './login/login.component';
+import { HoverDirective } from './directives/hover.directive';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -40,6 +43,9 @@ function initFactory(initService: InitService) {
     NotFoundComponent,
     RoomsBookingComponent,
     RoomsAddComponent,
+    CustomPipe,
+    LoginComponent,
+    HoverDirective
   ],
   imports: [
     BrowserModule,

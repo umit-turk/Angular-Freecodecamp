@@ -6,11 +6,16 @@ import { ContainerComponent } from './container/container.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'rooms',
@@ -26,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/rooms',
+    redirectTo: '/login',
     pathMatch: 'full',
   },
   {

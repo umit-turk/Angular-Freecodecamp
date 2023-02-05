@@ -43,8 +43,8 @@ export class RoomsService {
     @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
     private http: HttpClient
   ) {
-    console.log(this.config.apiEndpoint);
-    console.log('Rooms service initialized');
+    // console.log(this.config.apiEndpoint);
+    // console.log('Rooms service initialized');
   }
 
   getRooms() {

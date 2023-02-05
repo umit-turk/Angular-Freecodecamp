@@ -13,8 +13,8 @@ export class ContainerComponent implements OnInit, AfterContentInit {
   constructor(){}
 
   ngAfterContentInit(): void {
-    console.log('Component content has been initialized.');
-    console.log(this.employee)
+    // console.log('Component content has been initialized.');
+    // console.log(this.employee)
     this.employee.empName = "Umit"
   }
 

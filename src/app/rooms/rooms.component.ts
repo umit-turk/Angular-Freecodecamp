@@ -55,11 +55,11 @@ export class RoomsComponent {
     this.roomsService.getPhotos().pipe(shareReplay(1)).subscribe((data) => {
       switch(data.type){
         case HttpEventType.Sent: {
-          console.log('Request has been made!');
+          // console.log('Request has been made!');
           break;
         }
         case HttpEventType.ResponseHeader: {
-          console.log('Request success!');
+          // console.log('Request success!');
           break;
         }
         case HttpEventType.DownloadProgress: {
@@ -67,17 +67,17 @@ export class RoomsComponent {
           break;
         }
         case HttpEventType.Response: {
-          console.log(data.body);
+          // console.log(data.body);
         }
       }
       
     })
    this.roomList = this.roomsService.getRooms()
-   this.stream.subscribe({
-    next: (value) => console.log(value),
-    complete: () => console.log("complete"),
-    error: (err) => console.log(err)
-   })
+  //  this.stream.subscribe({
+  //   next: (value) => console.log(value),
+  //   complete: () => console.log("complete"),
+  //   error: (err) => console.log(err)
+  //  })
    this.subscription = this.stream.subscribe((res) => {
     // console.log(res)
    })

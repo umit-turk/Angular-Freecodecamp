@@ -28,7 +28,7 @@ export class AppComponent {
     @Inject(LocalStorageToken) private localStorage: any,
     private initService:InitService
   ) {
-    console.log(initService.config,"init");
+    // console.log(initService.config,"init");
     
   }
   ngOnInit(): void {

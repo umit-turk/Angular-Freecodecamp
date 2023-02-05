@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomPipe } from 'src/pipes/custom.pipe';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './directives/hover.directive';
+import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -45,7 +46,8 @@ function initFactory(initService: InitService) {
     RoomsAddComponent,
     CustomPipe,
     LoginComponent,
-    HoverDirective
+    HoverDirective,
+    EmailvalidatorDirective
   ],
   imports: [
     BrowserModule,

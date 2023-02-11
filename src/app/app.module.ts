@@ -5,9 +5,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
-import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
@@ -21,13 +18,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
-import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { FormsModule } from '@angular/forms';
 import { CustomPipe } from 'src/pipes/custom.pipe';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './directives/hover.directive';
 import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
+import { RoomsModule } from './rooms/rooms.module';
+import { HeaderModule } from './header/header.module';
+import { CommunicationComponent } from './communication/communication.component';
+import { ChildCommunicationComponent } from './communication/child-communication/child-communication.component';
+import { SecondChildComponent } from './communication/second-child/second-child.component';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -35,22 +35,21 @@ function initFactory(initService: InitService) {
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent,
-    RoomsListComponent,
-    HeaderComponent,
     ContainerComponent,
     EmployeeComponent,
     AppNavComponent,
     NotFoundComponent,
-    RoomsBookingComponent,
-    RoomsAddComponent,
     CustomPipe,
     LoginComponent,
     HoverDirective,
-    EmailvalidatorDirective
+    EmailvalidatorDirective,
+    CommunicationComponent,
+    ChildCommunicationComponent,
+    SecondChildComponent
   ],
   imports: [
     BrowserModule,
+    RoomsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -61,6 +60,7 @@ function initFactory(initService: InitService) {
     MatIconModule,
     MatListModule,
     FormsModule,
+    HeaderModule
   ],
   providers: [
     {

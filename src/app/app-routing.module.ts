@@ -1,3 +1,4 @@
+import { RoomsModule } from './rooms/rooms.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
@@ -27,6 +28,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
+  },
+  {
+    path:'rooms',
+    loadChildren:() => import('./rooms/rooms.module').then((m) => m.RoomsModule),
   },
   {
     path: '**',

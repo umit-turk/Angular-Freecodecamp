@@ -1,4 +1,4 @@
 <p>communication works! {{child}}</p>
-<span>second:   {{secondChild}}</span>
+<!-- <span>second:   {{secondChild}}</span> -->
 <app-child-communication  (childToParent)="childEvent($event)" [parentToChild]="data"></app-child-communication>
 <app-second-child (secondChild)="second($event)" ></app-second-child>

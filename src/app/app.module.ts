@@ -28,6 +28,8 @@ import { HeaderModule } from './header/header.module';
 import { CommunicationComponent } from './communication/communication.component';
 import { ChildCommunicationComponent } from './communication/child-communication/child-communication.component';
 import { SecondChildComponent } from './communication/second-child/second-child.component';
+import { ExampleComponent } from './example/example.component';
+import { LifecycleComponent } from './lifecycle/lifecycle.component';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -45,7 +47,9 @@ function initFactory(initService: InitService) {
     EmailvalidatorDirective,
     CommunicationComponent,
     ChildCommunicationComponent,
-    SecondChildComponent
+    SecondChildComponent,
+    ExampleComponent,
+    LifecycleComponent
   ],
   imports: [
     BrowserModule,

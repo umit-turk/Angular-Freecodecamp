@@ -10,12 +10,12 @@ export class CommunicationComponent {
   child?:string;
   secondChild?:string
   childEvent(event:any){
-    console.log(event);
+    // console.log(event);
     this.child = event.message
   }
 
   second(event:any){
-    console.log(event);
+    // console.log(event);
     this.secondChild = event.message;
   }
   

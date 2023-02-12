@@ -18,7 +18,7 @@
   {{ selectedRoom | json }}
 </div>
 <div>
-  <button (click)="addRoom()">Add Room</button>
+  <button routerLink="add">Add Room</button>
 </div>
 <div *ngIf="hideRooms">
   Rooms List
@@ -30,4 +30,5 @@
 </div>
 
 <button (click)="toggle()">Toggle</button>
+<router-outlet></router-outlet>
 

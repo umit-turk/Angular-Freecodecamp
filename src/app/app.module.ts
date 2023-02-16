@@ -30,6 +30,8 @@ import { ChildCommunicationComponent } from './communication/child-communication
 import { SecondChildComponent } from './communication/second-child/second-child.component';
 import { ExampleComponent } from './example/example.component';
 import { LifecycleComponent } from './lifecycle/lifecycle.component';
+import { RouteConfigToken } from './services/routeConfig.service';
+import { ROUTES } from '@angular/router';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -70,6 +72,10 @@ function initFactory(initService: InitService) {
     {
       provide: APP_SERVICE_CONFIG,
       useValue: APP_CONFIG,
+    },
+    {
+      provide:RouteConfigToken,
+      useValue:{title:'Home'},
     },
     {
       provide: HTTP_INTERCEPTORS,

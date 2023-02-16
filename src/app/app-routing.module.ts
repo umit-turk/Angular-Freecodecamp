@@ -17,12 +17,12 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path:'communucation',
-    component:CommunicationComponent
+    path: 'communucation',
+    component: CommunicationComponent,
   },
   {
-    path:'example',
-    component:ExampleComponent
+    path: 'example',
+    component: ExampleComponent,
   },
   {
     path: '',
@@ -30,8 +30,14 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path:'rooms',
-    loadChildren:() => import('./rooms/rooms.module').then((m) => m.RoomsModule),
+    path: 'rooms',
+    loadChildren: () =>
+      import('./rooms/rooms.module').then((m) => m.RoomsModule),
+  },
+  {
+    path: 'booking',
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
   },
   {
     path: '**',

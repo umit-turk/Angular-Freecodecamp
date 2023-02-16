@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { Observable, Subject, Subscription, catchError, map, of, shareReplay } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -29,7 +30,7 @@ export class RoomsComponent {
   @ViewChild(HeaderComponent) headerComponent!:HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!:QueryList<HeaderComponent>;
 
-  constructor(private roomsService:RoomsService) {}
+  constructor(private roomsService:RoomsService, private configService:ConfigService) {}
 
   stream = new Observable(observer => {
     observer.next("user1");

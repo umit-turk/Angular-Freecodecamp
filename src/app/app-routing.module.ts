@@ -6,11 +6,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { CommunicationComponent } from './communication/communication.component';
 import { ExampleComponent } from './example/example.component';
+import { LoginGuard } from './guards/login.guard';
+import { RoomGuard } from './rooms/guards/room.guard';
 
 const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'login',
@@ -19,10 +22,12 @@ const routes: Routes = [
   {
     path: 'communucation',
     component: CommunicationComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'example',
     component: ExampleComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: '',
@@ -33,11 +38,14 @@ const routes: Routes = [
     path: 'rooms',
     loadChildren: () =>
       import('./rooms/rooms.module').then((m) => m.RoomsModule),
+      canActivate:[LoginGuard],
+      canLoad:[LoginGuard]
   },
   {
     path: 'booking',
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingModule),
+    canActivate: [LoginGuard],
   },
   {
     path: '**',

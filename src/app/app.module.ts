@@ -1,3 +1,4 @@
+import { Dependecy1 } from './dependecyInjection1/depencey1service';
 import { InitService } from './init.service';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -88,6 +89,9 @@ function initFactory(initService: InitService) {
       deps: [InitService],
       multi: true,
     },
+    {
+      provide:Dependecy1
+    }
   ],
   bootstrap: [AppComponent],
 })

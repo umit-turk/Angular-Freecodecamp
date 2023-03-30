@@ -1,1 +1,19 @@
-<p>booking works!</p>
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Name" formControlName="name"> <br>
+    <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">{{name?.errors | json}}</div>
+    <input type="text" placeholder="Surname" formControlName="surname"> <br>
+    <div *ngIf="!surname?.valid && (surname?.dirty || surname?.touched)">{{name?.errors | json}}</div>
+    <input type="text" placeholder="Email" formControlName="email"> <br>
+    <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">{{name?.errors | json}}</div>
+    <input type="text" placeholder="Tel" formControlName="tel"> <br>
+    <div formGroupName="address"> <br>
+        <input type="text" placeholder="Country" formControlName="country"> <br>
+        <input type="text" placeholder="City" formControlName="city"> <br>
+        <input type="text" placeholder="Street" formControlName="street"> <br>
+    </div>
+    <button (click)="send()" type="submit">send</button> <br>
+    <button >submit</button> <br>
+    Valid: {{bookingForm.valid}}
+</form>
+
+

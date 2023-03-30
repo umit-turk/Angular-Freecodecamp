@@ -43,12 +43,10 @@ export class AppComponent {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
     ).subscribe((event) => {
-      console.log(event,'Navigation Started')
     })
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
     ).subscribe((event) => {
-      console.log(event,'Navigation End')
     })
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

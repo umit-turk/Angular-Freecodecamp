@@ -8,7 +8,5 @@ import { RouteConfig } from './routeConfig';
 export class ConfigService {
 
   constructor(@Inject(RouteConfigToken) private configToken:RouteConfig) { 
-    console.log('ConfigService initialized')
-    console.log(this.configToken,'configtoken')
   }
 }

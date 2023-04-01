@@ -13,6 +13,8 @@ import { InitService } from './init.service';
 import { ConfigService } from './services/config.service';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { Dependecy1 } from './dependecyInjection1/depencey1service';
+import { dependecyServiceIT } from './InjectionToken';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +33,16 @@ export class AppComponent {
     @Inject(LocalStorageToken) private localStorage: any,
     private configService:ConfigService,
     private initService:InitService,
-    private router:Router
+    private router:Router,
+    @Inject(dependecyServiceIT)private dependencyService:Dependecy1,
+    @Inject("example") value:string,
+    @Inject("umit") func:any,
+    @Inject("dependecyService") private dependecyUseService:Dependecy1
   ) {
     // console.log(initService.config,"init");
+    console.log(value)
+    console.log(func())
+    console.log(dependecyUseService.getProducts());
     
   }
   ngOnInit(): void {
@@ -53,5 +62,6 @@ export class AppComponent {
     // console.log(this.name.nativeElement.innerText = "Umit Yasar Turk");
     this.loggerService?.Log('hello');
     this.localStorage.setItem('name',"hilton hotel")
+    console.log(this.dependencyService.getProducts())
   }
 }

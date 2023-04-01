@@ -2,7 +2,7 @@ import { Dependecy1 } from './dependecyInjection1/depencey1service';
 import { InitService } from './init.service';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +33,8 @@ import { ExampleComponent } from './example/example.component';
 import { LifecycleComponent } from './lifecycle/lifecycle.component';
 import { RouteConfigToken } from './services/routeConfig.service';
 import { ROUTES } from '@angular/router';
+import { dependecyServiceIT } from './InjectionToken';
+import { firstValueFrom } from 'rxjs';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -89,9 +91,24 @@ function initFactory(initService: InitService) {
       deps: [InitService],
       multi: true,
     },
-    {
-      provide:Dependecy1
-    }
+    // {
+    //   provide:Dependecy1, // type token
+    //   useClass:Dependecy1,
+    // }
+    // Dependecy1 //DI - Default Type Token
+    // { provide:"dependecyService", useClass: Dependecy1 } // String Token
+    {provide:dependecyServiceIT, useClass:Dependecy1},
+    {provide:"example",useValue:"hello umit"},
+    {provide:"umit",useValue:() => {
+      return "umit yasar turk"
+    }},
+    {provide:"dependecyService", useFactory: (httpClient:HttpClient) => {
+    const obs =  httpClient.get("https://jsonplaceholder.typicode.com/posts").subscribe({next: data => {
+      console.log(data);
+      return new Dependecy1
+    }})
+    },deps:[HttpClient]}
+    //useValue provide edilen fonksiyonu döndürür, useFactory fonksiyon içerisindeki return edilen resultu döndürür.!useValue de fonksiyon döndürülür, useFactory de fonksiyon handle edilir ve result değeri döndürürlür 
   ],
   bootstrap: [AppComponent],
 })

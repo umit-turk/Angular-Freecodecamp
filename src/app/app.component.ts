@@ -42,7 +42,6 @@ export class AppComponent {
     // console.log(initService.config,"init");
     console.log(value)
     console.log(func())
-    console.log(dependecyUseService.getProducts());
     
   }
   ngOnInit(): void {

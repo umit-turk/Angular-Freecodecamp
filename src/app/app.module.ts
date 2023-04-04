@@ -35,6 +35,8 @@ import { RouteConfigToken } from './services/routeConfig.service';
 import { ROUTES } from '@angular/router';
 import { dependecyServiceIT } from './InjectionToken';
 import { firstValueFrom } from 'rxjs';
+import { RandomserviceService } from './services/randomservice.service';
+import { EmployeChildComponent } from './employee/child/employe-child/employe-child.component';
 function initFactory(initService: InitService) {
   return () => initService.init();
 }
@@ -54,7 +56,8 @@ function initFactory(initService: InitService) {
     ChildCommunicationComponent,
     SecondChildComponent,
     ExampleComponent,
-    LifecycleComponent
+    LifecycleComponent,
+    EmployeChildComponent
   ],
   imports: [
     BrowserModule,
@@ -107,8 +110,9 @@ function initFactory(initService: InitService) {
       console.log(data);
       return new Dependecy1
     }})
-    },deps:[HttpClient]}
+    },deps:[HttpClient]},
     //useValue provide edilen fonksiyonu döndürür, useFactory fonksiyon içerisindeki return edilen resultu döndürür.!useValue de fonksiyon döndürülür, useFactory de fonksiyon handle edilir ve result değeri döndürürlür 
+    {provide:RandomserviceService, useClass:RandomserviceService}
   ],
   bootstrap: [AppComponent],
 })
